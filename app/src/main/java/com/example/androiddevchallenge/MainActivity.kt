@@ -26,49 +26,58 @@ import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.core.types.Dog
 import com.example.androiddevchallenge.ui.composables.DogDetailedView
-import com.example.androiddevchallenge.ui.composables.FirstScreen
+import com.example.androiddevchallenge.ui.composables.DogsList
 import com.example.androiddevchallenge.ui.composables.LoadingIndicator
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainActivityViewModel
-    private lateinit var currentDog : Dog
+    private lateinit var currentDog: Dog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         viewModel =
             ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.dogs.observe(this, {
-            setContent {
-                ComposeNavigation(it)
+        viewModel.dogs.observe(
+            this,
+            {
+                setContent {
+                    ComposeNavigation(it)
+                }
             }
-        })
+        )
     }
 
     @Composable
-    fun ComposeNavigation(dogs : List<Dog>) {
+    fun ComposeNavigation(dogs: List<Dog>) {
         val navController = rememberNavController()
-        viewModel.dog.observe(this, {
-            if (!it.hasBeenHandled) {
-                currentDog = it.getContentIfNotHandledOrReturnNull() !!
-                navController.navigate("third_screen") {
-                    popUpTo = navController.graph.startDestination
+        viewModel.dog.observe(
+            this,
+            {
+                if (!it.hasBeenHandled) {
+                    currentDog = it.getContentIfNotHandledOrReturnNull() !!
+                    navController.navigate("third_screen") {
+                        popUpTo = navController.graph.startDestination
+                    }
                 }
             }
-        })
+        )
         NavHost(
             navController = navController,
             startDestination = "first_screen"
         ) {
             composable("first_screen") {
-                FirstScreen(dogs, object : RecordClick {
-                    override fun click(id: Long) {
-                        viewModel.getDog(id)
-                        navController.navigate("second_screen")
+                DogsList(
+                    dogs,
+                    object : RecordClick {
+                        override fun click(id: Long) {
+                            viewModel.getDog(id)
+                            navController.navigate("second_screen")
+                        }
                     }
-                })
+                )
             }
             composable("second_screen") {
                 LoadingIndicator()
@@ -94,5 +103,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
