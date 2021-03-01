@@ -20,7 +20,7 @@ import com.example.androiddevchallenge.core.types.Sex
 
 class DataSource {
 
-    private val dogs : List<Dog>
+    private val dogs: List<Dog>
 
     init {
         dogs = listOf(
@@ -30,22 +30,21 @@ class DataSource {
             Dog(3, 4, "Emma", loremIpsum(), Sex.Female, "Cardiff", "dog4"),
             Dog(4, 5, "Hank", loremIpsum(), Sex.Male, "London", "dog5"),
             Dog(5, 1, "Trish", loremIpsum(), Sex.Female, "London", "dog6"),
-            Dog(6, 11, "Snoopy", loremIpsum(), Sex.Female, "London", "dog7"))
+            Dog(6, 11, "Snoopy", loremIpsum(), Sex.Female, "London", "dog7")
+        )
     }
 
-    private fun loremIpsum() : String =
+    private fun loremIpsum(): String =
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque cursus sit amet " +
-                "purus eu egestas. Vivamus hendrerit quam eu pharetra rutrum. Vestibulum vitae ullamcorper " +
-                "nulla. Ut euismod malesuada erat ac bibendum. Mauris nec placerat elit. Praesent id" +
-                " dolor nulla. Aenean posuere quis tellus lobortis accumsan. In pellentesque iaculis" +
-                " accumsan. Nullam non metus nec nisl aliquam feugiat. Vestibulum viverra in felis" +
-                " eu tempor. Cras vestibulum semper ipsum, " +
-                "eu molestie nisi condimentum et. Pellentesque vel ligula ipsum. Suspendisse" +
-                " ut congue libero."
+            "purus eu egestas. Vivamus hendrerit quam eu pharetra rutrum. Vestibulum vitae ullamcorper " +
+            "nulla. Ut euismod malesuada erat ac bibendum. Mauris nec placerat elit. Praesent id" +
+            " dolor nulla. Aenean posuere quis tellus lobortis accumsan. In pellentesque iaculis" +
+            " accumsan. Nullam non metus nec nisl aliquam feugiat. Vestibulum viverra in felis" +
+            " eu tempor. Cras vestibulum semper ipsum, " +
+            "eu molestie nisi condimentum et. Pellentesque vel ligula ipsum. Suspendisse" +
+            " ut congue libero."
 
+    fun getAll(): List<Dog> = dogs
 
-    fun getAll() : List<Dog> = dogs
-
-    fun get(id : Long) = dogs.first { it.id == id }
-
+    fun get(id: Long) = dogs.first { it.id == id }
 }

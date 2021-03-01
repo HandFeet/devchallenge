@@ -20,8 +20,7 @@ import com.example.androiddevchallenge.core.types.Dog
 
 class GetDogAction {
 
-    operator fun invoke(id : Long) : Dog {
+    operator fun invoke(id: Long): Dog {
         return DataSource().get(id)
     }
-
 }

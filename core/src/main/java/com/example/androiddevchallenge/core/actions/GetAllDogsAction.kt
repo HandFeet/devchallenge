@@ -20,8 +20,7 @@ import com.example.androiddevchallenge.core.types.Dog
 
 class GetAllDogsAction {
 
-    operator fun invoke() : List<Dog> {
+    operator fun invoke(): List<Dog> {
         return DataSource().getAll()
     }
-
 }

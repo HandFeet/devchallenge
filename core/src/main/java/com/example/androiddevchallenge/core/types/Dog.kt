@@ -22,4 +22,5 @@ data class Dog(
     val description: String,
     val sex: Sex,
     val location: String,
-    val fileName : String)
+    val fileName: String
+)
